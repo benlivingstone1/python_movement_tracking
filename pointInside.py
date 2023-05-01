@@ -21,6 +21,7 @@ def pointInside(frame, rectangle, p, time):
         # When habituation is done, show that the trigger is on
         if time > 600:
             cv2.putText(frame, "STIM ON", (10,frame.shape[0]-10), cv2.FONT_HERSHEY_DUPLEX, 2.0, (118, 185, 0), 2)
+            print("stimulus triggered")
 
         # print("point is in the square")
         # cv2.putText(frame, "STIM ON", (10, frame.shape[0] // 10), cv2.FONT_HERSHEY_DUPLEX, 2.0, (118, 185, 0), 2)
