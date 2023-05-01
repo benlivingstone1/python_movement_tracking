@@ -164,7 +164,7 @@ if __name__ == "__main__":
             trigger_stim.set()
 
         # Add the centroid to the csv file
-        csvWriter.writerow([int(point[0]), int(point[1]), location])
+        csvWriter.writerow([f"{minutes}:{seconds}",int(point[0]), int(point[1]), location])
 
         # Show the frame and use waitKey to stop program
         cv2.imshow("frame", frame)
