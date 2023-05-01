@@ -27,7 +27,6 @@ def play_stimuli(end_test, trigger_stim, stimuli):
 
     while not end_test.is_set():
         trigger_stim.wait()
-
         stim_stream.write(stim.tobytes())
         trigger_stim.clear()
 
@@ -150,9 +149,6 @@ if __name__ == "__main__":
             rectangle = cv2.selectROI(frame)
             roiSelected = True
 
-        # Check if the point is inside rectangle
-        location = pointInside.pointInside(frame, rectangle, point)
-
         # get the elapsed time of test
         current_time = time.time()
         elapsed_time = current_time - start_time
@@ -160,6 +156,9 @@ if __name__ == "__main__":
         seconds = int(elapsed_time % 60)
 
         cv2.putText(frame, f"{minutes}:{seconds}", (10, frame.shape[0] // 10), cv2.FONT_HERSHEY_DUPLEX, 2.0, (118, 185, 0), 2)
+
+        # Check if the point is inside rectangle
+        location = pointInside.pointInside(frame, rectangle, point, elapsed_time)
 
         if location == "TRIGGER" and elapsed_time > 600:
             trigger_stim.set()
