@@ -116,6 +116,9 @@ if __name__ == "__main__":
     csvFile = open("centroid.csv", 'w', newline='')
     csvWriter = csv.writer(csvFile)
 
+    # Get the start time for the program
+    start_time = time.time()
+
     # Loop through available frames
     while True:
         ret, frame = video.read()
@@ -150,7 +153,15 @@ if __name__ == "__main__":
         # Check if the point is inside rectangle
         location = pointInside.pointInside(frame, rectangle, point)
 
-        if location == "TRIGGER":
+        # get the elapsed time of test
+        current_time = time.time()
+        elapsed_time = current_time - start_time
+        minutes = int(elapsed_time // 60)
+        seconds = int(elapsed_time % 60)
+
+        cv2.putText(frame, f"{minutes}:{seconds}", (10, frame.shape[0] // 10), cv2.FONT_HERSHEY_DUPLEX, 2.0, (118, 185, 0), 2)
+
+        if location == "TRIGGER" and elapsed_time > 600:
             trigger_stim.set()
 
         # Add the centroid to the csv file
