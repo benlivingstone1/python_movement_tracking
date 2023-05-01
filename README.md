@@ -8,3 +8,6 @@ is calculated, and that is assumed to be the center of the object.
 25/04/23 - added functionality to run the auditory looming test (ALT) 
 This test is to measure defensive responses to sounds that mimic an approaching object. 
 ALT sound levels can be adjusted by running the calibrate.py script.
+
+01/05/23 - Added timing feature to the script. elapsed time is displayed in the top left
+of the output video frame. 
